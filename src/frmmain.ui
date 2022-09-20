@@ -1858,6 +1858,9 @@ QSlider::handle:horizontal:hover {
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
                  </property>
+                 <property name="digitCount">
+                  <number>7</number>
+                 </property>
                  <property name="text" stdset="0">
                   <string>0</string>
                  </property>
@@ -2076,6 +2079,9 @@ QSlider::handle:horizontal:hover {
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
                  </property>
+                 <property name="digitCount">
+                  <number>7</number>
+                 </property>
                  <property name="text" stdset="0">
                   <string>0</string>
                  </property>
@@ -2293,6 +2299,9 @@ QSlider::handle:horizontal:hover {
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="digitCount">
+                  <number>7</number>
                  </property>
                  <property name="text" stdset="0">
                   <string>0</string>
@@ -2540,8 +2549,8 @@ QSlider::handle:horizontal:hover {
                  <property name="frameShadow">
                   <enum>QFrame::Plain</enum>
                  </property>
-                 <property name="smallDecimalPoint">
-                  <bool>true</bool>
+                 <property name="digitCount">
+                  <number>7</number>
                  </property>
                  <property name="value" stdset="0">
                   <double>0.000000000000000</double>
@@ -2767,6 +2776,9 @@ QSlider::handle:horizontal:hover {
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
                  </property>
+                 <property name="digitCount">
+                  <number>7</number>
+                 </property>
                  <property name="text" stdset="0">
                   <string>0</string>
                  </property>
@@ -2984,6 +2996,9 @@ QSlider::handle:horizontal:hover {
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="digitCount">
+                  <number>7</number>
                  </property>
                  <property name="text" stdset="0">
                   <string>0</string>
