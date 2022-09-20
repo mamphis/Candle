@@ -115,7 +115,7 @@ QSlider::handle:horizontal:hover {
 }*/</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="100,1">
+   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1">
     <property name="spacing">
      <number>9</number>
     </property>
@@ -139,7 +139,7 @@ QSlider::handle:horizontal:hover {
       <property name="flat">
        <bool>false</bool>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0,0,0,0,0,1,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>7</number>
        </property>
@@ -327,68 +327,627 @@ QSlider::handle:horizontal:hover {
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <layout class="QVBoxLayout" name="verticalLayout_7">
+         <widget class="QWidget" name="horizontalWidget" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
            <property name="spacing">
             <number>9</number>
            </property>
            <item>
-            <widget class="QTableView" name="tblProgram">
-             <property name="font">
-              <font>
-               <pointsize>9</pointsize>
-              </font>
-             </property>
-             <property name="contextMenuPolicy">
-              <enum>Qt::CustomContextMenu</enum>
-             </property>
-             <property name="editTriggers">
-              <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
-             </property>
-             <property name="selectionMode">
-              <enum>QAbstractItemView::ContiguousSelection</enum>
-             </property>
-             <property name="selectionBehavior">
-              <enum>QAbstractItemView::SelectRows</enum>
-             </property>
-             <property name="gridStyle">
-              <enum>Qt::DashLine</enum>
-             </property>
-             <attribute name="horizontalHeaderHighlightSections">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="horizontalHeaderMinimumSectionSize">
-              <number>50</number>
-             </attribute>
-             <attribute name="verticalHeaderVisible">
-              <bool>false</bool>
-             </attribute>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_13">
+             <item>
+              <widget class="QTableView" name="tblHeightMap">
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::SingleSelection</enum>
+               </property>
+               <property name="gridStyle">
+                <enum>Qt::DashLine</enum>
+               </property>
+               <attribute name="horizontalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>60</number>
+               </attribute>
+               <attribute name="horizontalHeaderHighlightSections">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableView" name="tblProgram">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="contextMenuPolicy">
+                <enum>Qt::CustomContextMenu</enum>
+               </property>
+               <property name="editTriggers">
+                <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::ContiguousSelection</enum>
+               </property>
+               <property name="selectionBehavior">
+                <enum>QAbstractItemView::SelectRows</enum>
+               </property>
+               <property name="gridStyle">
+                <enum>Qt::DashLine</enum>
+               </property>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>50</number>
+               </attribute>
+               <attribute name="horizontalHeaderHighlightSections">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <widget class="QTableView" name="tblHeightMap">
-             <property name="alternatingRowColors">
-              <bool>true</bool>
-             </property>
-             <property name="selectionMode">
-              <enum>QAbstractItemView::SingleSelection</enum>
-             </property>
-             <property name="gridStyle">
-              <enum>Qt::DashLine</enum>
-             </property>
-             <attribute name="horizontalHeaderVisible">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="horizontalHeaderDefaultSectionSize">
-              <number>60</number>
-             </attribute>
-             <attribute name="horizontalHeaderHighlightSections">
-              <bool>false</bool>
-             </attribute>
-             <attribute name="verticalHeaderVisible">
-              <bool>false</bool>
-             </attribute>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="GroupBox" name="grpSpindle">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>280</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="title">
+                <string>Spindle</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="overrided" stdset="0">
+                <bool>false</bool>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="leftMargin">
+                 <number>8</number>
+                </property>
+                <property name="topMargin">
+                 <number>8</number>
+                </property>
+                <property name="rightMargin">
+                 <number>8</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>8</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="widgetSpindle" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_16">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="SliderBox" name="slbSpindle" native="true"/>
+                   </item>
+                   <item>
+                    <widget class="StyledToolButton" name="cmdSpindle">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>44</width>
+                       <height>44</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>Spindle on/off</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/images/cutter.png</normaloff>:/images/cutter.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>28</width>
+                       <height>28</height>
+                      </size>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="grpJog">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>280</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>280</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <property name="leftMargin">
+                 <number>8</number>
+                </property>
+                <property name="topMargin">
+                 <number>8</number>
+                </property>
+                <property name="rightMargin">
+                 <number>8</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>8</number>
+                </property>
+                <item>
+                 <widget class="QWidget" name="widgetJog" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_9">
+                   <property name="spacing">
+                    <number>10</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_3">
+                     <property name="horizontalSpacing">
+                      <number>8</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>4</number>
+                     </property>
+                     <item row="2" column="0">
+                      <widget class="StyledToolButton" name="cmdXMinus">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>44</width>
+                         <height>44</height>
+                        </size>
+                       </property>
+                       <property name="toolTip">
+                        <string>X-</string>
+                       </property>
+                       <property name="text">
+                        <string>...</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="images.qrc">
+                         <normaloff>:/images/1401561986_chevron-left.png</normaloff>:/images/1401561986_chevron-left.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <layout class="QHBoxLayout" name="horizontalLayout_13">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="StyledToolButton" name="cmdYMinus">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>44</width>
+                           <height>44</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Y-</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="images.qrc">
+                           <normaloff>:/images/1401562173_chevron-down.png</normaloff>:/images/1401562173_chevron-down.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>30</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="StyledToolButton" name="cmdXPlus">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>44</width>
+                         <height>44</height>
+                        </size>
+                       </property>
+                       <property name="toolTip">
+                        <string>X+</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="images.qrc">
+                         <normaloff>:/images/1401562173_chevron-right.png</normaloff>:/images/1401562173_chevron-right.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>30</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <layout class="QHBoxLayout" name="horizontalLayout_12">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="StyledToolButton" name="cmdYPlus">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>44</width>
+                           <height>44</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Y+</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="images.qrc">
+                           <normaloff>:/images/1401562173_chevron-up.png</normaloff>:/images/1401562173_chevron-up.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>30</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="0" column="3">
+                      <layout class="QHBoxLayout" name="horizontalLayout_25">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <spacer name="horizontalSpacer">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>0</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="StyledToolButton" name="cmdZPlus">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>44</width>
+                           <height>44</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Z+</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="images.qrc">
+                           <normaloff>:/images/1401562699_icon-arrow-up-b.png</normaloff>:/images/1401562699_icon-arrow-up-b.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>28</width>
+                           <height>28</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="3" column="3">
+                      <layout class="QHBoxLayout" name="horizontalLayout_26">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <spacer name="horizontalSpacer_2">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>0</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="StyledToolButton" name="cmdZMinus">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>44</width>
+                           <height>44</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Z-</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="images.qrc">
+                           <normaloff>:/images/1401562699_icon-arrow-down-b.png</normaloff>:/images/1401562699_icon-arrow-down-b.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>28</width>
+                           <height>28</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="2" column="1">
+                      <layout class="QHBoxLayout" name="horizontalLayout_15">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="StyledToolButton" name="cmdStop">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>44</width>
+                           <height>44</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Stop</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="images.qrc">
+                           <normaloff>:/images/brake.png</normaloff>:/images/brake.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>30</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_8">
+                     <property name="verticalSpacing">
+                      <number>7</number>
+                     </property>
+                     <item row="1" column="1">
+                      <widget class="ComboBoxKey" name="cboJogFeed">
+                       <property name="editable">
+                        <bool>true</bool>
+                       </property>
+                       <property name="insertPolicy">
+                        <enum>QComboBox::NoInsert</enum>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>10</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>50</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>100</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>500</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>1000</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>2000</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_20">
+                       <property name="text">
+                        <string>Step:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="ComboBoxKey" name="cboJogStep">
+                       <property name="editable">
+                        <bool>true</bool>
+                       </property>
+                       <property name="insertPolicy">
+                        <enum>QComboBox::NoInsert</enum>
+                       </property>
+                       <item>
+                        <property name="text">
+                         <string>Continuously</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>0.01</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>0.1</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>1</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>5</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>10</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>100</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_22">
+                       <property name="text">
+                        <string>Feed:</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chkKeyboardControl">
+                     <property name="text">
+                      <string>Keyboard control</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -790,22 +1349,8 @@ QSlider::handle:horizontal:hover {
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout_6">
-              <item row="1" column="2">
-               <widget class="QLabel" name="label_19">
-                <property name="text">
-                 <string>Y:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_18">
-                <property name="text">
-                 <string>X:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QDoubleSpinBox" name="txtHeightMapInterpolationStepX">
+              <item row="1" column="3">
+               <widget class="QDoubleSpinBox" name="txtHeightMapInterpolationStepY">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -835,8 +1380,22 @@ QSlider::handle:horizontal:hover {
                 </property>
                </widget>
               </item>
-              <item row="1" column="3">
-               <widget class="QDoubleSpinBox" name="txtHeightMapInterpolationStepY">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>X:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="label_19">
+                <property name="text">
+                 <string>Y:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="txtHeightMapInterpolationStepX">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -1043,6 +1602,12 @@ QSlider::handle:horizontal:hover {
         </property>
         <item>
          <widget class="QGroupBox" name="grpState">
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="title">
            <string>State</string>
           </property>
@@ -1253,6 +1818,12 @@ QSlider::handle:horizontal:hover {
         </property>
         <item>
          <widget class="QGroupBox" name="grpControl">
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="title">
            <string>Control</string>
           </property>
@@ -1500,6 +2071,12 @@ QSlider::handle:horizontal:hover {
       </item>
       <item>
        <widget class="QSplitter" name="splitPanels">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QSplitter::handle {
 	background-image: url(&quot;:/images/handle_small.png&quot;);
@@ -1540,9 +2117,9 @@ QSlider::handle:horizontal:hover {
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-416</y>
-            <width>228</width>
-            <height>691</height>
+            <y>-82</y>
+            <width>274</width>
+            <height>350</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -1876,92 +2453,6 @@ QSlider::handle:horizontal:hover {
             </widget>
            </item>
            <item>
-            <widget class="GroupBox" name="grpSpindle">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="title">
-              <string>Spindle</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="overrided" stdset="0">
-              <bool>false</bool>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <property name="leftMargin">
-               <number>8</number>
-              </property>
-              <property name="topMargin">
-               <number>8</number>
-              </property>
-              <property name="rightMargin">
-               <number>8</number>
-              </property>
-              <property name="bottomMargin">
-               <number>8</number>
-              </property>
-              <item>
-               <widget class="QWidget" name="widgetSpindle" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_16">
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="SliderBox" name="slbSpindle" native="true"/>
-                 </item>
-                 <item>
-                  <widget class="StyledToolButton" name="cmdSpindle">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>44</width>
-                     <height>44</height>
-                    </size>
-                   </property>
-                   <property name="toolTip">
-                    <string>Spindle on/off</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="images.qrc">
-                     <normaloff>:/images/cutter.png</normaloff>:/images/cutter.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>28</width>
-                     <height>28</height>
-                    </size>
-                   </property>
-                   <property name="checkable">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
             <widget class="GroupBox" name="grpOverriding">
              <property name="enabled">
               <bool>true</bool>
@@ -2011,462 +2502,6 @@ QSlider::handle:horizontal:hover {
                  </item>
                  <item>
                   <widget class="SliderBox" name="slbSpindleOverride" native="true"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="GroupBox" name="grpJog">
-             <property name="title">
-              <string>Jog</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="overrided" stdset="0">
-              <bool>false</bool>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_11">
-              <property name="leftMargin">
-               <number>8</number>
-              </property>
-              <property name="topMargin">
-               <number>8</number>
-              </property>
-              <property name="rightMargin">
-               <number>8</number>
-              </property>
-              <property name="bottomMargin">
-               <number>8</number>
-              </property>
-              <item>
-               <widget class="QWidget" name="widgetJog" native="true">
-                <layout class="QVBoxLayout" name="verticalLayout_9">
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <layout class="QGridLayout" name="gridLayout_3">
-                   <property name="horizontalSpacing">
-                    <number>8</number>
-                   </property>
-                   <property name="verticalSpacing">
-                    <number>4</number>
-                   </property>
-                   <item row="2" column="0">
-                    <widget class="StyledToolButton" name="cmdXMinus">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>44</width>
-                       <height>44</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>X-</string>
-                     </property>
-                     <property name="text">
-                      <string>...</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="images.qrc">
-                       <normaloff>:/images/1401561986_chevron-left.png</normaloff>:/images/1401561986_chevron-left.png</iconset>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>30</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="3" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_13">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdYMinus">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Y-</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/1401562173_chevron-down.png</normaloff>:/images/1401562173_chevron-down.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="2" column="2">
-                    <widget class="StyledToolButton" name="cmdXPlus">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>44</width>
-                       <height>44</height>
-                      </size>
-                     </property>
-                     <property name="toolTip">
-                      <string>X+</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="images.qrc">
-                       <normaloff>:/images/1401562173_chevron-right.png</normaloff>:/images/1401562173_chevron-right.png</iconset>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>30</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="0" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_12">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdYPlus">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Y+</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/1401562173_chevron-up.png</normaloff>:/images/1401562173_chevron-up.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="0" column="3">
-                    <layout class="QHBoxLayout" name="horizontalLayout_25">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <spacer name="horizontalSpacer">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>0</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdZPlus">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Z+</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/1401562699_icon-arrow-up-b.png</normaloff>:/images/1401562699_icon-arrow-up-b.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>28</width>
-                         <height>28</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="3" column="3">
-                    <layout class="QHBoxLayout" name="horizontalLayout_26">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <spacer name="horizontalSpacer_2">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>0</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdZMinus">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Z-</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/1401562699_icon-arrow-down-b.png</normaloff>:/images/1401562699_icon-arrow-down-b.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>28</width>
-                         <height>28</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="2" column="1">
-                    <layout class="QHBoxLayout" name="horizontalLayout_15">
-                     <property name="spacing">
-                      <number>0</number>
-                     </property>
-                     <item>
-                      <widget class="StyledToolButton" name="cmdStop">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>44</width>
-                         <height>44</height>
-                        </size>
-                       </property>
-                       <property name="toolTip">
-                        <string>Stop</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/images/brake.png</normaloff>:/images/brake.png</iconset>
-                       </property>
-                       <property name="iconSize">
-                        <size>
-                         <width>30</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <layout class="QGridLayout" name="gridLayout_8">
-                   <property name="verticalSpacing">
-                    <number>7</number>
-                   </property>
-                   <item row="0" column="1">
-                    <widget class="ComboBoxKey" name="cboJogStep">
-                     <property name="editable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="insertPolicy">
-                      <enum>QComboBox::NoInsert</enum>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Continuously</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>0.01</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>0.1</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>1</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>5</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>10</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>100</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item row="0" column="0">
-                    <widget class="QLabel" name="label_20">
-                     <property name="text">
-                      <string>Step:</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_22">
-                     <property name="text">
-                      <string>Feed:</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="ComboBoxKey" name="cboJogFeed">
-                     <property name="editable">
-                      <bool>true</bool>
-                     </property>
-                     <property name="insertPolicy">
-                      <enum>QComboBox::NoInsert</enum>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>10</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>50</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>100</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>500</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>1000</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>2000</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item>
-                  <widget class="QCheckBox" name="chkKeyboardControl">
-                   <property name="text">
-                    <string>Keyboard control</string>
-                   </property>
-                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2616,7 +2651,7 @@ padding-right: 8;</string>
      <x>0</x>
      <y>0</y>
      <width>952</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="mnuFile">
@@ -2763,8 +2798,6 @@ padding-right: 8;</string>
   <tabstop>cmdFront</tabstop>
   <tabstop>cmdLeft</tabstop>
   <tabstop>cmdFit</tabstop>
-  <tabstop>tblProgram</tabstop>
-  <tabstop>tblHeightMap</tabstop>
   <tabstop>txtHeightMapBorderX</tabstop>
   <tabstop>txtHeightMapBorderWidth</tabstop>
   <tabstop>txtHeightMapBorderY</tabstop>
@@ -2800,10 +2833,8 @@ padding-right: 8;</string>
   <tabstop>cmdHeightMapCreate</tabstop>
   <tabstop>cmdHeightMapLoad</tabstop>
   <tabstop>cmdHeightMapMode</tabstop>
-  <tabstop>grpSpindle</tabstop>
   <tabstop>cmdSpindle</tabstop>
   <tabstop>grpOverriding</tabstop>
-  <tabstop>grpJog</tabstop>
   <tabstop>cmdXMinus</tabstop>
   <tabstop>cmdXPlus</tabstop>
   <tabstop>cmdYPlus</tabstop>
@@ -2820,70 +2851,5 @@ padding-right: 8;</string>
  <resources>
   <include location="images.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>chkKeyboardControl</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tblProgram</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>858</x>
-     <y>813</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>493</x>
-     <y>576</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>chkKeyboardControl</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>slbSpindle</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>786</x>
-     <y>804</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>741</x>
-     <y>431</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>chkKeyboardControl</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>widgetFeed</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>807</x>
-     <y>799</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>773</x>
-     <y>504</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>chkKeyboardControl</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>tblHeightMap</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>799</x>
-     <y>803</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>456</x>
-     <y>790</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

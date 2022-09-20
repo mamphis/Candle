@@ -13,6 +13,7 @@
 #include <QTimer>
 #include <QTime>
 #include "drawers/shaderdrawable.h"
+#define GL_PROGRAM_POINT_SIZE 100
 
 #ifdef GLES
 class GLWidget : public QOpenGLWidget

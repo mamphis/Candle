@@ -8,6 +8,7 @@
 #include <QtSerialPort/QSerialPort>
 #include <QSettings>
 #include <QTimer>
+#include <QGLFormat>
 #include <QBasicTimer>
 #include <QStringList>
 #include <QList>
@@ -288,6 +289,7 @@ private:
     bool m_resetCompleted = true;
     bool m_aborting = false;
     bool m_statusReceived = false;
+    bool m_paused = false;
 
     bool m_processingFile = false;
     bool m_transferCompleted = false;
