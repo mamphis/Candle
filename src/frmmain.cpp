@@ -144,9 +144,11 @@ frmMain::frmMain(QWidget *parent) :
     ui->cmdHeightMapLoad->setMinimumHeight(ui->cmdFileOpen->sizeHint().height());
     ui->cmdHeightMapMode->setMinimumHeight(ui->cmdFileOpen->sizeHint().height());
 
-    ui->cboJogStep->setValidator(new QDoubleValidator(0, 10000, 2));
+    ui->cboJogStepXY->setValidator(new QDoubleValidator(0, 10000, 2));
+    ui->cboJogStepZ->setValidator(new QDoubleValidator(0, 10000, 2));
     ui->cboJogFeed->setValidator(new QIntValidator(0, 100000));
-    connect(ui->cboJogStep, &ComboBoxKey::currentTextChanged, [=] (QString) {updateJogTitle();});
+    connect(ui->cboJogStepXY, &ComboBoxKey::currentTextChanged, [=] (QString) {updateJogTitle();});
+    connect(ui->cboJogStepZ, &ComboBoxKey::currentTextChanged, [=] (QString) {updateJogTitle();});
     connect(ui->cboJogFeed, &ComboBoxKey::currentTextChanged, [=] (QString) {updateJogTitle();});
 
     // Prepare "Send"-button
@@ -268,7 +270,7 @@ frmMain::frmMain(QWidget *parent) :
     connect(ui->slbSpindle, &SliderBox::valueUserChanged, [=] {m_updateSpindleSpeed = true;});
     connect(ui->slbSpindle, &SliderBox::valueChanged, [=] {
         if (!ui->grpSpindle->isChecked() && ui->cmdSpindle->isChecked())
-            ui->grpSpindle->setTitle(tr("Spindle") + QString(tr(" (%1)")).arg(ui->slbSpindle->value()));
+            ui->grpSpindle->setTitle(tr("Spindle") + QString(tr("  (S: %1)")).arg(ui->slbSpindle->value()));
     });
 
     // Setup serial port
@@ -287,7 +289,8 @@ frmMain::frmMain(QWidget *parent) :
 
     this->installEventFilter(this);
     ui->tblProgram->installEventFilter(this);
-    ui->cboJogStep->installEventFilter(this);
+    ui->cboJogStepXY->installEventFilter(this);
+    ui->cboJogStepZ->installEventFilter(this);
     ui->cboJogFeed->installEventFilter(this);
     ui->splitPanels->handle(1)->installEventFilter(this);
     ui->splitPanels->installEventFilter(this);
@@ -448,8 +451,10 @@ void frmMain::loadSettings()
         m_settings->setUserCommands(i, set.value(QString("userCommands%1").arg(i)).toString());
     }
 
-    ui->cboJogStep->setItems(set.value("jogSteps").toStringList());
-    ui->cboJogStep->setCurrentIndex(ui->cboJogStep->findText(set.value("jogStep").toString()));
+    ui->cboJogStepXY->setItems(set.value("jogStepsXY").toStringList());
+    ui->cboJogStepXY->setCurrentIndex(ui->cboJogStepXY->findText(set.value("jogStepXY").toString()));
+    ui->cboJogStepZ->setItems(set.value("jogStepsZ").toStringList());
+    ui->cboJogStepZ->setCurrentIndex(ui->cboJogStepZ->findText(set.value("jogStepZ").toString()));
     ui->cboJogFeed->setItems(set.value("jogFeeds").toStringList());
     ui->cboJogFeed->setCurrentIndex(ui->cboJogFeed->findText(set.value("jogFeed").toString()));
 
@@ -579,8 +584,10 @@ void frmMain::saveSettings()
         set.setValue(QString("userCommands%1").arg(i), m_settings->userCommands(i));
     }
 
-    set.setValue("jogSteps", ui->cboJogStep->items());
-    set.setValue("jogStep", ui->cboJogStep->currentText());
+    set.setValue("jogStepsXY", ui->cboJogStepXY->items());
+    set.setValue("jogStepsZ", ui->cboJogStepZ->items());
+    set.setValue("jogStepXY", ui->cboJogStepXY->currentText());
+    set.setValue("jogStepZ", ui->cboJogStepZ->currentText());
     set.setValue("jogFeeds", ui->cboJogFeed->items());
     set.setValue("jogFeed", ui->cboJogFeed->currentText());
 
@@ -718,10 +725,12 @@ void frmMain::updateControlsState() {
     ui->grpHeightMapSettings->setVisible(m_heightMapMode);
     ui->grpHeightMapSettings->setEnabled(!m_processingFile && !ui->chkKeyboardControl->isChecked());
 
-    ui->cboJogStep->setEditable(!ui->chkKeyboardControl->isChecked());
+    ui->cboJogStepXY->setEditable(!ui->chkKeyboardControl->isChecked());
+    ui->cboJogStepZ->setEditable(!ui->chkKeyboardControl->isChecked());
     ui->cboJogFeed->setEditable(!ui->chkKeyboardControl->isChecked());
-    ui->cboJogStep->setStyleSheet(QString("font-size: %1").arg(m_settings->fontSize()));
-    ui->cboJogFeed->setStyleSheet(ui->cboJogStep->styleSheet());
+    ui->cboJogStepXY->setStyleSheet(QString("font-size: %1").arg(m_settings->fontSize()));
+    ui->cboJogStepZ->setStyleSheet(ui->cboJogStepXY->styleSheet());
+    ui->cboJogFeed->setStyleSheet(ui->cboJogStepXY->styleSheet());
 
     ui->chkTestMode->setVisible(!m_heightMapMode);
     ui->chkAutoScroll->setVisible(ui->splitter->sizes()[1] && !m_heightMapMode);
@@ -2460,7 +2469,7 @@ void frmMain::on_cmdSpindle_toggled(bool checked)
     ui->grpSpindle->ensurePolished();
 
     if (checked) {
-        if (!ui->grpSpindle->isChecked()) ui->grpSpindle->setTitle(tr("Spindle") + QString(tr(" (%1)")).arg(ui->slbSpindle->value()));
+        if (!ui->grpSpindle->isChecked()) ui->grpSpindle->setTitle(tr("Spindle") + QString(tr(" (S: %1)")).arg(ui->slbSpindle->value()));
     } else {
         ui->grpSpindle->setTitle(tr("Spindle"));
     }
@@ -2766,7 +2775,7 @@ void frmMain::on_grpOverriding_toggled(bool checked)
     if (checked) {
         ui->grpOverriding->setTitle(tr("Overriding"));
     } else if (ui->slbFeedOverride->isChecked() | ui->slbRapidOverride->isChecked() | ui->slbSpindleOverride->isChecked()) {
-        ui->grpOverriding->setTitle(tr("Overriding") + QString(tr(" (%1/%2/%3)"))
+        ui->grpOverriding->setTitle(tr("Overriding") + QString(tr(" (F: %1 / R: %2 / S: %3)"))
                                     .arg(ui->slbFeedOverride->isChecked() ? QString::number(ui->slbFeedOverride->value()) : "-")
                                     .arg(ui->slbRapidOverride->isChecked() ? QString::number(ui->slbRapidOverride->value()) : "-")
                                     .arg(ui->slbSpindleOverride->isChecked() ? QString::number(ui->slbSpindleOverride->value()) : "-"));
@@ -2782,7 +2791,7 @@ void frmMain::on_grpSpindle_toggled(bool checked)
         ui->grpSpindle->setTitle(tr("Spindle"));
     } else if (ui->cmdSpindle->isChecked()) {
 //        ui->grpSpindle->setTitle(tr("Spindle") + QString(tr(" (%1)")).arg(ui->txtSpindleSpeed->text()));
-        ui->grpSpindle->setTitle(tr("Spindle") + QString(tr(" (%1)")).arg(ui->slbSpindle->value()));
+        ui->grpSpindle->setTitle(tr("Spindle") + QString(tr(" (S: %1)")).arg(ui->slbSpindle->value()));
     }
     updateLayouts();
 
@@ -2797,7 +2806,7 @@ void frmMain::on_grpUserCommands_toggled(bool checked)
 bool frmMain::eventFilter(QObject *obj, QEvent *event)
 {
     // Main form events
-    if (obj == this || obj == ui->tblProgram || obj == ui->cboJogStep || obj == ui->cboJogFeed) {
+    if (obj == this || obj == ui->tblProgram || obj == ui->cboJogStepXY || obj == ui->cboJogStepZ || obj == ui->cboJogFeed) {
 
         // Jog on keyboard control
         if (!m_processingFile && ui->chkKeyboardControl->isChecked() &&
@@ -2835,10 +2844,14 @@ bool frmMain::eventFilter(QObject *obj, QEvent *event)
             }
 
             if (!m_processingFile && ui->chkKeyboardControl->isChecked()) {
-                if (keyEvent->key() == Qt::Key_7) {
-                    ui->cboJogStep->setCurrentPrevious();
-                } else if (keyEvent->key() == Qt::Key_1) {
-                    ui->cboJogStep->setCurrentNext();
+                if (keyEvent->key() == Qt::Key_7 && !keyEvent->modifiers().testFlag(Qt::ControlModifier)) {
+                    ui->cboJogStepXY->setCurrentPrevious();
+                } else if (keyEvent->key() == Qt::Key_7 && keyEvent->modifiers().testFlag(Qt::ControlModifier)) {
+                    ui->cboJogStepZ->setCurrentPrevious();
+                } else if (keyEvent->key() == Qt::Key_1 && !keyEvent->modifiers().testFlag(Qt::ControlModifier)) {
+                    ui->cboJogStepXY->setCurrentNext();
+                } else if (keyEvent->key() == Qt::Key_1 && keyEvent->modifiers().testFlag(Qt::ControlModifier)) {
+                    ui->cboJogStepZ->setCurrentNext();
                 } else if (keyEvent->key() == Qt::Key_Minus) {
                     ui->cboJogFeed->setCurrentPrevious();
                 } else if (keyEvent->key() == Qt::Key_Plus) {
@@ -2972,8 +2985,9 @@ void frmMain::updateJogTitle()
     if (ui->grpJog->isChecked() || !ui->chkKeyboardControl->isChecked()) {
         ui->grpJog->setTitle(tr("Jog"));
     } else if (ui->chkKeyboardControl->isChecked()) {
-        ui->grpJog->setTitle(tr("Jog") + QString(tr(" (%1/%2)"))
-                             .arg(ui->cboJogStep->currentText().toDouble() > 0 ? ui->cboJogStep->currentText() : tr("C"))
+        ui->grpJog->setTitle(tr("Jog") + QString(tr(" (XY: %1 / Z: %2 / F: %3)"))
+                             .arg(ui->cboJogStepXY->currentText().toDouble() > 0 ? ui->cboJogStepXY->currentText() : tr("C"))
+                             .arg(ui->cboJogStepZ->currentText().toDouble() > 0 ? ui->cboJogStepZ->currentText() : tr("C"))
                              .arg(ui->cboJogFeed->currentText()));
     }
 }
@@ -3888,32 +3902,66 @@ void frmMain::jogStep()
 {
     if (m_jogVector.length() == 0) return;
 
-    if (ui->cboJogStep->currentText().toDouble() == 0) {
-        const double acc = m_settings->acceleration();              // Acceleration mm/sec^2
-        int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
-        double v = (double)speed / 60;                              // Rapid speed mm/sec
-        int N = 15;                                                 // Planner blocks
-        double dt = qMax(0.01, sqrt(v) / (2 * acc * (N - 1)));      // Single jog command time
-        double s = v * dt;                                          // Jog distance
+    // Jog in XY Plane
+    QVector3D jogXY = m_jogVector * QVector3D(1,1,0);
+    QVector3D jogZ = m_jogVector * QVector3D(0,0,1);
+    if (jogXY.length() != 0) {
+        if (ui->cboJogStepXY->currentText().toDouble() == 0) {
+            const double acc = m_settings->acceleration();              // Acceleration mm/sec^2
+            int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
+            double v = (double)speed / 60;                              // Rapid speed mm/sec
+            int N = 15;                                                 // Planner blocks
+            double dt = qMax(0.01, sqrt(v) / (2 * acc * (N - 1)));      // Single jog command time
+            double s = v * dt;                                          // Jog distance
 
-        QVector3D vec = m_jogVector.normalized() * s;
+            QVector3D vec = jogXY.normalized() * s;
 
-    //    qDebug() << "jog" << speed << v << acc << dt <<s;
+        //    qDebug() << "jog" << speed << v << acc << dt <<s;
 
-        sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
-                    .arg(vec.x(), 0, 'g', 4)
-                    .arg(vec.y(), 0, 'g', 4)
-                    .arg(vec.z(), 0, 'g', 4)
-                    .arg(speed), -2, m_settings->showUICommands());
-    } else {
-        int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
-        QVector3D vec = m_jogVector * ui->cboJogStep->currentText().toDouble();
+            sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
+                        .arg(vec.x(), 0, 'g', 4)
+                        .arg(vec.y(), 0, 'g', 4)
+                        .arg(vec.z(), 0, 'g', 4)
+                        .arg(speed), -2, m_settings->showUICommands());
+        } else {
+            int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
+            QVector3D vec = jogXY * ui->cboJogStepXY->currentText().toDouble();
 
-        sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
-                    .arg(vec.x(), 0, 'g', 4)
-                    .arg(vec.y(), 0, 'g', 4)
-                    .arg(vec.z(), 0, 'g', 4)
-                    .arg(speed), -3, m_settings->showUICommands());
+            sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
+                        .arg(vec.x(), 0, 'g', 4)
+                        .arg(vec.y(), 0, 'g', 4)
+                        .arg(vec.z(), 0, 'g', 4)
+                        .arg(speed), -3, m_settings->showUICommands());
+        }
+    }
+    if (jogZ.length() != 0) {
+        if (ui->cboJogStepZ->currentText().toDouble() == 0) {
+            const double acc = m_settings->acceleration();              // Acceleration mm/sec^2
+            int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
+            double v = (double)speed / 60;                              // Rapid speed mm/sec
+            int N = 15;                                                 // Planner blocks
+            double dt = qMax(0.01, sqrt(v) / (2 * acc * (N - 1)));      // Single jog command time
+            double s = v * dt;                                          // Jog distance
+
+            QVector3D vec = jogZ.normalized() * s;
+
+        //    qDebug() << "jog" << speed << v << acc << dt <<s;
+
+            sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
+                        .arg(vec.x(), 0, 'g', 4)
+                        .arg(vec.y(), 0, 'g', 4)
+                        .arg(vec.z(), 0, 'g', 4)
+                        .arg(speed), -2, m_settings->showUICommands());
+        } else {
+            int speed = ui->cboJogFeed->currentText().toInt();          // Speed mm/min
+            QVector3D vec = jogZ * ui->cboJogStepZ->currentText().toDouble();
+
+            sendCommand(QString("$J=G21G91X%1Y%2Z%3F%4")
+                        .arg(vec.x(), 0, 'g', 4)
+                        .arg(vec.y(), 0, 'g', 4)
+                        .arg(vec.z(), 0, 'g', 4)
+                        .arg(speed), -3, m_settings->showUICommands());
+        }
     }
 }
 
