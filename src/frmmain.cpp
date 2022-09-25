@@ -85,7 +85,24 @@ frmMain::frmMain(QWidget *parent) :
                        << "black";
 
     // Loading settings
-    m_settingsFileName = qApp->applicationDirPath() + "/settings.ini";
+    QDir candleConfigDir = QDir(QDir::homePath() + "/.candle");
+    if(!candleConfigDir.exists()) {
+        candleConfigDir.mkpath(candleConfigDir.absolutePath());
+    }
+
+
+    QString settingsFilePath = qApp->applicationDirPath() + "/settings.ini";
+    QFile settingsConfigFile(candleConfigDir.path() + "/settings.ini");
+
+    if (!settingsConfigFile.exists()) {
+        QFile settingsFile (settingsFilePath);
+        if (settingsFile.exists()) {
+            settingsFile.rename(candleConfigDir.path() + "/settings.ini");
+        }
+    }
+
+    m_settingsFileName = candleConfigDir.path() + "/settings.ini";
+
     preloadSettings();
 
     m_settings = new frmSettings(this);
